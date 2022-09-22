@@ -1,0 +1,3 @@
+[submodule "stylesheet-extensions"]
+	path = stylesheet-extensions
+	url = https://github.com/haikyuu/stylesheet-extensions
