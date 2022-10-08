@@ -3,11 +3,13 @@ import {
     generateColorNameResolver,
     generateVariableName
 } from "zeplin-extension-style-kit/utils";
+import mapStyle from './map-style'
 
-const PREFIX = "--";
-const SEPARATOR = ": ";
-const SUFFIX = ";";
-const INDENTATION = "  ";
+
+const PREFIX = "$";
+const SEPARATOR = ":";
+const SUFFIX = " ";
+const INDENTATION = "\t";
 
 class CSS {
     constructor(container, params) {
@@ -50,6 +52,7 @@ class CSS {
     }
 
     declaration(d) {
+
         const value = d.getValue(
             this.params,
             generateColorNameResolver({
@@ -58,11 +61,13 @@ class CSS {
                 formatVariableName: color => this.formatColorVariable(color)
             })
         );
-        return `${INDENTATION}${d.name}${SEPARATOR}${value}${SUFFIX}`;
+		const declarations = [{prop: d.name, value}]
+		const name = mapStyle(declarations, "cl1", [], '')
+        return `${name[0]}`;
     }
 
     declarationsBlock(declarations) {
-        return `{\n${declarations.map(this.declaration, this).join("\n")}\n}`;
+        return ` ${declarations.map(this.declaration, this).join(" ")}\n`;
     }
 
     variable(name, value) {
@@ -73,7 +78,6 @@ class CSS {
     ruleSet({ selector, declarations }, { parentDeclarations = [], scope = "" } = {}) {
         const filteredDeclarations = this.filterDeclarations(declarations, parentDeclarations);
         const ruleSelector = scope ? `${scope} ${selector}` : selector;
-
         if (!filteredDeclarations.length) {
             return "";
         }

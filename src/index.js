@@ -3,7 +3,7 @@ import { createExtension } from "../stylesheet-extensions/packages/base-extensio
 import Generator from "./generator";
 import { COPYRIGHT } from "./constants";
 
-const exportPrefix = "${COPYRIGHT}\n\n";
+const exportPrefix = ``;
 
 const INDENTATION = "  ";
 
@@ -12,14 +12,14 @@ export default createExtension({
 	language: "css",
 	Generator,
 	colorsOptions: {
-		prefix: ":root {\n${INDENTATION}",
-		separator: "\n${INDENTATION}",
-		suffix: "\n}"
+		prefix: `:root ${INDENTATION}`,
+		separator: ` `,
+		suffix: ` `
 	},
 	spacingOptions: {
-		prefix: ":root {\n${INDENTATION}",
-		separator: "\n${INDENTATION}",
-		suffix: "\n}"
+		prefix: ":root ",
+		separator: " ",
+		suffix: ""
 	},
 	exportTextStylesOptions: {
 		prefix: exportPrefix

@@ -1,0 +1,82 @@
+{
+  "packageName": "imba",
+  "name": "Imba",
+  "description": "",
+  "version": "0.1.0",
+  "options": [
+    {
+      "name": "Variable name format",
+      "type": "picker",
+      "id": "variableNameFormat",
+      "submenu": true,
+      "options": [
+        {
+          "name": "kebab-case",
+          "value": "kebab"
+        },
+        {
+          "name": "snake_case",
+          "value": "snake"
+        },
+        {
+          "name": "camelCase",
+          "value": "camel"
+        },
+        {
+          "name": "PascalCase",
+          "value": "pascal"
+        },
+        {
+          "name": "CONSTANT_CASE",
+          "value": "constant"
+        },
+        {
+          "name": "Use original",
+          "value": "none"
+        }
+      ],
+      "default": "kebab"
+    },
+    {
+      "name": "Dimensions",
+      "type": "switch",
+      "id": "showDimensions",
+      "default": true
+    },
+    {
+      "name": "Unitless line-height",
+      "type": "switch",
+      "id": "unitlessLineHeight",
+      "default": true
+    },
+    {
+      "name": "Default values",
+      "type": "switch",
+      "id": "showDefaultValues",
+      "default": true
+    },
+    {
+      "name": "Display resources from linked and parent styleguides",
+      "type": "switch",
+      "id": "useLinkedStyleguides",
+      "default": true
+    },
+    {
+      "name": "Use “rem” unit",
+      "type": "switch",
+      "id": "useRemUnit",
+      "default": true
+    },
+    {
+      "name": "Show padding, margin estimations (experimental)",
+      "type": "switch",
+      "id": "showPaddingMargin",
+      "default": true
+    }
+  ],
+  "platforms": [
+    "web"
+  ],
+  "moduleURL": "./main.32d83c27.js",
+  "readmeURL": "./README.md"
+}
