@@ -18,7 +18,7 @@ class CSS {
     }
 
     formatColorVariable(color) {
-        return `var(${PREFIX}${generateVariableName(color.originalName || color.name, this.params.variableNameFormat)})`;
+        return `${PREFIX}${generateVariableName(color.originalName || color.name, this.params.variableNameFormat)}`;
     }
 
     filterDeclarations(childDeclarations, parentDeclarations) {

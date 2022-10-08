@@ -1,4 +1,4 @@
-import { variants, aliases } from 'imba/compiler'
+import { variants, aliases } from 'imba/dist/compiler.mjs'
 
 export default def map-style(declarations, cls, css-vars, mod\string)
 	let styles = []

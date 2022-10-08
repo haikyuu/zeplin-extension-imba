@@ -1,12 +1,12 @@
 function iter$__(a){ let v; return a ? ((v=a.toIterable) ? v.call(a) : a) : a; };
 
 /*body*/
-import {variants,aliases} from 'imba/compiler';
+import {variants,aliases} from 'imba/dist/compiler.mjs';
 
 /**
 @param {string} mod
 */
-export default function mapStyle(declarations,cls,cssΞvars,mod){
+export default function mapΞstyle(declarations,cls,cssΞvars,mod){
 	
 	let styles = [];
 	
@@ -27,7 +27,7 @@ export default function mapStyle(declarations,cls,cssΞvars,mod){
 					
 					value = parts[1] + parts[2][0];
 				};
-			} else {
+			} else if (parts[1]) {
 				
 				value = parts[1];
 			};
@@ -112,27 +112,30 @@ export default function mapStyle(declarations,cls,cssΞvars,mod){
 	return styles.map(function(style) {
 		
 		const matches = style.value?.matchAll?.(/var\(--(.*?)\)/g);
-		for (let m of iter$__(matches)){
+		if (matches) {
 			
-			for (let $22 = 0, $23 = iter$__(cssΞvars), $24 = $23.length; $22 < $24; $22++) {
-				let decl = $23[$22];
-				if (decl.__global) { continue; };
-				let withΞfallback = m[1].matchAll(/([^,]*),([^,]*)/g);
-				withΞfallback = [...withΞfallback];
-				if (withΞfallback.length) {
-					
-					if (style.value.includes(m[0])) {
+			for (let m of iter$__(matches)){
+				
+				for (let $22 = 0, $23 = iter$__(cssΞvars), $24 = $23.length; $22 < $24; $22++) {
+					let decl = $23[$22];
+					if (decl.__global) { continue; };
+					let withΞfallback = m[1].matchAll(/([^,]*),([^,]*)/g);
+					withΞfallback = [...withΞfallback];
+					if (withΞfallback.length) {
 						
-						style.value = style.value.replaceAll(m[0],decl.value || withΞfallback[2].trim());
+						if (style.value.includes(m[0])) {
+							
+							style.value = style.value.replaceAll(m[0],decl.value || withΞfallback[2].trim());
+						};
+					};
+					if (decl.prop.replace('--','') == m[1] && style.value.includes(decl.prop)) {
+						
+						style.value = style.value.replaceAll(m[0],decl.value);
 					};
 				};
-				if (decl.prop.replace('--','') == m[1] && style.value.includes(decl.prop)) {
-					
-					style.value = style.value.replaceAll(m[0],decl.value);
-				};
+				
+				style.value = style.value.replace(m[0],"");
 			};
-			
-			style.value = style.value.replace(m[0],"");
 		};
 		if (style.prop == 'transform') {
 			
@@ -141,27 +144,30 @@ export default function mapStyle(declarations,cls,cssΞvars,mod){
 			// handle translate and rotate
 			// use https://regex101.com/r/QW5wdK/1
 			let s = "";
-			for (let f of iter$__(fm)){
+			if (fm) {
 				
-				const fn = f[1];
-				const x = f[2];
-				const y = f[5];
-				const z = f[8];
-				let _ref = ["x","y","z"];
-				if (fn == "translate") {
+				for (let f of iter$__(fm)){
 					
-					for (let i = 0, $25 = [x,y,z], $26 = $25.length; i < $26; i++) {
-						let v = $25[i];
-						if (v?.indexOf?.('rem') > -1) {
-							
-							v = + v.replace('rem','');
-							v /= 0.25;
-							s += ("" + (_ref[i]) + ":" + v + " ");
+					const fn = f[1];
+					const x = f[2];
+					const y = f[5];
+					const z = f[8];
+					let _ref = ["x","y","z"];
+					if (fn == "translate") {
+						
+						for (let i = 0, $25 = [x,y,z], $26 = $25.length; i < $26; i++) {
+							let v = $25[i];
+							if (v?.indexOf?.('rem') > -1) {
+								
+								v = + v.replace('rem','');
+								v /= 0.25;
+								s += ("" + (_ref[i]) + ":" + v + " ");
+							};
 						};
+					} else if (fn == "rotate" && x) {
+						
+						s += ("rotate:" + x);
 					};
-				} else if (fn == "rotate" && x) {
-					
-					s += ("rotate:" + x);
 				};
 			};
 			return s.trim();
