@@ -13,6 +13,7 @@ export default function mapΞstyle(declarations,cls,cssΞvars,mod){
 	for (let $1 = 0, $2 = iter$__(declarations), $12 = $2.length; $1 < $12; $1++) {
 		let declaration = $2[$1];
 		if (declaration.prop.startsWith('--')) { continue; };
+		console.log("dec",declaration);
 		let {prop: _prop,value: value} = declaration;
 		if (declaration.prop === 'color' || declaration.value.includes('rgb(')) {
 			
@@ -34,7 +35,7 @@ export default function mapΞstyle(declarations,cls,cssΞvars,mod){
 			
 			for (let $3 = 0, $4 = iter$__(cssΞvars), $5 = $4.length; $3 < $5; $3++) {
 				let v = $4[$3];
-				if (declaration.value.includes(("/ var(" + (v.prop)) && v.value != "1")) {
+				if (declaration.value.includes(("/ var(" + (v.prop))) && v.value != "1") {
 					
 					value = ("" + value + "/" + (v.value));
 				};
@@ -121,6 +122,7 @@ export default function mapΞstyle(declarations,cls,cssΞvars,mod){
 					if (decl.__global) { continue; };
 					let withΞfallback = m[1].matchAll(/([^,]*),([^,]*)/g);
 					withΞfallback = [...withΞfallback];
+					console.log("ss",style.value);
 					if (withΞfallback.length) {
 						
 						if (style.value.includes(m[0])) {

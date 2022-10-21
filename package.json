@@ -1,7 +1,7 @@
 {
   "name": "imba",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.1.1",
+  "description": "Imba zeplin plugin",
   "sideEffects": false,
   "scripts": {
     "start": "zem start",

@@ -18,7 +18,7 @@ export default def map-style(declarations, cls, css-vars, mod\string)
 				value = parts[1]
 			
 			for v in css-vars
-				if declaration.value.includes "/ var({v.prop}" and v.value != "1"
+				if declaration.value.includes("/ var({v.prop}") and v.value != "1"
 					value = "{value}/{v.value}"
 
 

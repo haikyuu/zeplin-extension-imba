@@ -61,7 +61,7 @@ class CSS {
                 formatVariableName: color => this.formatColorVariable(color)
             })
         );
-		const declarations = [{prop: d.name, value}]
+		const declarations = [{prop: d.name, value: `${value}`}]
 		const name = mapStyle(declarations, "cl1", [], '')
         return `${name[0]}`;
     }
