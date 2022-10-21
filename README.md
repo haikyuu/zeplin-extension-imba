@@ -1,4 +1,5 @@
 # Zeplin Imba Extension
+Repository: https://github.com/haikyuu/zeplin-extension-imba
 
 ## Output
 
